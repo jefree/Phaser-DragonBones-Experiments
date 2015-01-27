@@ -117,6 +117,13 @@ var dragonBones;
                 return slot
             };
             PhaserBonesFactory.prototype._generateDisplay = function (textureAtlas, frameName, pivotX, pivotY) {
+                //console.log('frameName', frameName);
+                //console.log('textureAtlas', textureAtlas);
+
+                if (! textureAtlas.getRegion(frameName)) {
+                    return null;
+                }
+
                 //fetch the id of the atlas image
                 var imgName = textureAtlas.atlasId;
                 //create a sprite
@@ -157,7 +164,7 @@ dragonBones.makeBonesAtlas = function (atlasJson, name, partsList) {
         hasExtension = partName.match(/.png/i) !== null;
         if(hasExtension){
             filename = partName;
-            partName = filename.substr(-4);
+            partName = filename.split('.')[0];
         } else {
             filename = partName + ".png";
         }

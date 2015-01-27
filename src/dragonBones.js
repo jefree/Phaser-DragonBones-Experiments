@@ -2324,6 +2324,7 @@ var dragonBones;
                 var slotData;
                 var slotDataList = skinData.getSlotDataList();
                 var displayDataList;
+
                 for (var index in slotDataList) {
                     slotData = slotDataList[index];
                     bone = armature.getBone(slotData.parent);
@@ -2331,6 +2332,7 @@ var dragonBones;
                         continue;
                     }
                     displayDataList = slotData.getDisplayDataList();
+                    //console.log('displayDataList', displayDataList);
                     slot = this._generateSlot();
                     slot.name = slotData.name;
                     slot._originZOrder = slotData.zOrder;

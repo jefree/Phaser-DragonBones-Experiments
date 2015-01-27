@@ -48,7 +48,7 @@ ScriptLoader.load(["src/dragonBones.js","src/phaser_dragonbones.js"], createGame
 
 //now instantiate the game
 function createGame(){
-    game = new Phaser.Game(800, 600, Phaser.AUTO, 'experiments', { preload: preload, create: create, update: update, render: render });
+    game = new Phaser.Game(800, 400, Phaser.AUTO, 'experiments', { preload: preload, create: create, update: update, render: render });
 }
 
 //preload game assets
@@ -72,14 +72,14 @@ function create () {
     //start a run-loop for dragonbones, firing every 20ms
    //game.time.events.loop(20, update, this);
 
-   game.physics.startSystem(Phaser.Physics.ARCADE);
-   game.physics.arcade.gravity.y = 1000;
+    game.physics.startSystem(Phaser.Physics.ARCADE);
+    game.physics.arcade.gravity.y = 1000;
 
-   var index = 0;
-   var animations = armature.animation.animationNameList;
+    var index = 1;
+    var animations = armature.animation.animationNameList;
 
-   game.input.onDown.add(function clicking() {
-    index = (index + 1) % animations.length;
+    game.input.onDown.add(function clicking() {
+        index = (index + 1) % animations.length;
         armature.animation.gotoAndPlay(animations[index], 0.2);
    });
 }
@@ -144,7 +144,7 @@ function addDragonBones(){
     bonesBase.y = 300;
 
     // add it to the display list
-    game.world.add(bonesBase);
+    //game.world.add(bonesBase);
 
     //game.physics.arcade.enable(group);
     
@@ -161,6 +161,4 @@ function addDragonBones(){
             }
         });
     }
-
-    //setBody(group);
 }
