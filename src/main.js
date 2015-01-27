@@ -82,7 +82,11 @@ function create () {
         index = (index + 1) % animations.length;
         armature.animation.gotoAndPlay(animations[index], 0.2);
    });
+
 }
+
+var head2_active = false;
+var space_down = false;
 
 function update() {
     // call advanceTime on the dragonBones world clock to progress the animation.
@@ -90,8 +94,30 @@ function update() {
     // For simplicity just using a hardcoded value of 0.02 secs
     // but ideally should evaluate how much time has really passed since last call
     // and send that value through instead -> eg use Date.now()
-    dragonBones.animation.WorldClock.clock.advanceTime(0.02);
 
+    if (game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+        console.log('abajo')
+
+        if (!space_down) {
+            space_down = true;
+
+            if (!head2_active) {
+                armature.getSlot('head').setDisplay(armature._factory.getTextureDisplay("MovieClip/head2"));
+                head2_active = true;
+            }
+            else {
+                armature.getSlot('head').setDisplay(armature._factory.getTextureDisplay("MovieClip/head"));
+                head2_active = false;   
+            }
+        }
+    }
+    else {
+        if (space_down) {
+            space_down = false;
+        }
+    }
+
+    dragonBones.animation.WorldClock.clock.advanceTime(0.02);
 }
 
 function render() {
@@ -124,7 +150,8 @@ function addDragonBones(){
                 "MovieClip/legu.png",
                 "MovieClip/body.png",
                 "MovieClip/armf.png",
-                "MovieClip/armu.png"
+                "MovieClip/armu.png",
+                "MovieClip/head2.png"
                 ];
     
     // fetch the atlas image

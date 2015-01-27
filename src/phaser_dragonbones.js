@@ -207,6 +207,7 @@ dragonBones.makePhaserArmature = function (armatureName,
     factory.addTextureAtlas(atlas);
     // generate the armature
     var armature = factory.buildArmature(armatureName, animationId, skeletonId);
+    armature._factory = factory;
     //link it to the world clock
     dragonBones.animation.WorldClock.clock.add(armature);
     //play the requested timeline
